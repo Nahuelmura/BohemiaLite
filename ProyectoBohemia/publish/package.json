@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "autonumeric": "^4.10.8",
+    "sweetalert2": "^11.17.2"
+  }
+}

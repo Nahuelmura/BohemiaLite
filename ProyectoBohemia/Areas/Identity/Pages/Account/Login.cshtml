@@ -1,0 +1,69 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Bohemia</title>
+    <link rel="stylesheet" href="~/css/loguin.css" asp-append-version="true" />
+</head>
+<body class="Imagen_Loguin">
+
+    <div class="container px-4 py-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h1 class="my-5 display-5 fw-bold ls-tight Textobohemia text-white">
+                    BOHEMIA<br />
+                    <span>Inicia sesión en tu cuenta</span>
+                </h1>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="cardIngreso">
+                    <div class="card-body px-4 py-5 color">
+                        <form id="account" method="post">
+                            <h2 class="text-center Textobohemia text-white">Ingreso</h2>
+                            <hr />
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            
+                            <div class="form-outline mb-3">
+                                <input asp-for="Input.Email" class="form-control bg-white" autocomplete="username" placeholder="Correo" aria-label="Correo electrónico" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-outline mb-3">
+                                <input asp-for="Input.Password" type="password" class="form-control bg-white" autocomplete="current-password" placeholder="Contraseña" aria-label="Contraseña" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-check d-flex justify-content-center mb-3">
+                                <input class="form-check-input me-2" asp-for="Input.RememberMe" id="rememberMe" />
+                                <label for="rememberMe" class="form-label">Recordarme</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-light btn-block">Inicio</button>
+
+                            <div class="text-center mt-3">
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar nuevo usuario</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

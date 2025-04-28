@@ -1,0 +1,77 @@
+<h1>Lista de clientes</h1>
+
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Localidad</th>
+            <th>Domicilio</th>
+            <th>DNI</th>
+            <th>Telefono</th>
+            <th>Mail</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody id="detalleVentaTabla"></tbody>
+</table>
+
+
+<!-- Button trigger modal -->
+<button  type="button" class="btn-flotante" data-bs-toggle="modal" data-bs-target="#DetalleModal">
+   <i class="fa-solid fa-plus"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="DetalleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Clientes</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+    <div class="modal-body">
+    <input type="hidden" id="ProductoID" value="0">
+    <input type="hidden" id="VentaID" value="0">
+
+    <!-- Primera fila: 3 inputs juntos -->
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="CodigoProducto" placeholder="Nombre">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="descripcion" placeholder="Apellido">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Localidad</label>
+            <input type="text" class="form-control" id="stockdisponible" placeholder="Localidad">
+        </div>
+    </div>
+
+    <!-- Segunda fila: 2 inputs abajo -->
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <label class="form-label">Domicilio</label>
+            <input type="text" class="form-control" id="cantidad" placeholder="Domicilio">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">DNI</label>
+            <input type="text" class="form-control" id="precioUnitario" placeholder="DNI">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="precioUnitario" placeholder="Telefono">
+        </div>
+        </div>
+            <div class="col-md-6">
+            <label class="form-label">Mail</label>
+            <input type="text" class="form-control" id="precioUnitario" placeholder="Mail">
+        </div>
+
+</div>
