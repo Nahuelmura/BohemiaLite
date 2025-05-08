@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, delayOutside);
 });
 
-
+//funcion para buscar por codigo y traiga la informacion del producto
 $(document).ready(function () {
     $("#CodigoProducto").on("blur", function () {
         let codigo = $(this).val().toUpperCase();
@@ -188,9 +188,79 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    // Buscar sugerencias por observación
+    $("#Observacion").on("input", function () {
+        let texto = $(this).val().toUpperCase();
 
+        if (texto.trim() !== "") {
+            $.ajax({
+                url: '../../Venta/BuscarPorObservacion',
+                type: 'GET',
+                data: { texto },
+                success: function (response) {
+                    if (response.success) {
+                        $("#sugerencias").empty().show();
 
+                        response.productos.forEach(function (producto) {
+                            $("#sugerencias").append(
+                                `<li class="list-group-item list-group-item-action" 
+                                    data-id="${producto.productoID}" 
+                                    data-observacion="${producto.observacion}" 
+                                    data-codigo="${producto.codigo}">
+                                    ${producto.observacion}   ${producto.codigo}
+                                </li>`
+                            );
+                        });
+                    } else {
+                        $("#sugerencias").hide();
+                    }
+                },
+                error: function () {
+                    alert("Error en la búsqueda");
+                }
+            });
+        } else {
+            $("#sugerencias").hide();
+        }
+    });
 
+    // Al hacer clic en una sugerencia
+    $(document).on("click", "#sugerencias li", function () {
+        let productoID = $(this).data("id");
+        let observacion = $(this).data("observacion");
+        let codigo = $(this).data("codigo");
+
+        $("#Observacion").val(observacion);
+        $("#CodigoProducto").val(codigo);
+        $("#sugerencias").hide();
+
+        // Llamar a método que trae datos del producto por ID
+        $.ajax({
+            url: '../../Venta/ObtenerProductoPorID',
+            type: 'GET',
+            data: { id: productoID },
+            success: function (response) {
+                if (response.success) {
+                    $("#precioUnitario").val(response.precio);
+                    $("#stockdisponible").val(response.stock);
+                    $("#descripcion").val(response.descripcionProducto);
+                    $("#CodigoProducto").val(response.codigo);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                alert("Error al obtener detalle del producto");
+            }
+        });
+    });
+
+    // Ocultar sugerencias al perder foco
+    $("#Observacion").on("blur", function () {
+        setTimeout(() => { $("#sugerencias").hide(); }, 200);
+    });
+});
 
 
 
@@ -370,7 +440,9 @@ function GuardarDetallesVenta(ventaId) {
         confirmButtonText: 'Aceptar'
         
     });
-    location.reload();
+    setTimeout(() => {
+        location.reload();
+    }, 2000); // 2 segundos de espera antes de recargar
 
     detallesVenta = []; // Limpiar productos en memoria
     $("#detalleVentaTabla").empty();

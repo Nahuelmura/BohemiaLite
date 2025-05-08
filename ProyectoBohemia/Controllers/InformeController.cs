@@ -23,6 +23,9 @@ public class InformeController : Controller
     {
 
 
+
+ ViewData["TituloHeader"] = "INFORME VENTAS";  //declararacion de titulo por pestaña
+
         // Crear una lista de SelectListItem que incluya el elemento adicional
         var selectListItems = new List<SelectListItem>
         {
@@ -165,6 +168,11 @@ gananciaTotalFecha = detalleventas.Sum(d => d.PrecioUnitario - (d.Productos.Prec
               .ToList();
 
 
+              
+
+
+
+
         return Json(new
         {
             detalleVentasMostrar,
@@ -194,7 +202,7 @@ gananciaTotalFecha = detalleventas.Sum(d => d.PrecioUnitario - (d.Productos.Prec
     public IActionResult IndexPro()
     {
 
-
+ ViewData["TituloHeader"] = "Top Productos";  //declararacion de titulo por pestaña
 
           return View();
     }

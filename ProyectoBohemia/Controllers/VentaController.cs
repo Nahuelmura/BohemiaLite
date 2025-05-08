@@ -23,8 +23,11 @@ public class VentaController : Controller
         _userManager = userManager;
     }
 
+ 
     public IActionResult Index(string codigo, DateTime? fecha, Descripcion descripcion)
     {
+
+         ViewData["TituloHeader"] = "VENTAS";  //declararacion de titulo por pestaña
 
         // Crear una lista de SelectListItem que incluya el elemento adicional
         var selectListItems = new List<SelectListItem>
@@ -220,6 +223,57 @@ public JsonResult ListadoDetalleVenta(int? detalleVentaID, string codigo, DateTi
 
 
 
+
+[HttpGet]
+public JsonResult BuscarPorObservacion(string texto)
+{
+    try
+    {
+        var productos = _context.Productos
+            .Where(p => !p.Eliminado && p.Observacion.ToLower().Contains(texto.ToLower()))
+            .Select(p => new
+            {
+                productoID = p.ProductoID,
+                observacion = p.Observacion,
+                descripcion = p.Descripcion,
+                codigo = p.Codigo
+            })
+            .ToList();
+
+        return Json(new { success = true, productos });
+    }
+    catch (Exception ex)
+    {
+        return Json(new { success = false, message = "Error: " + ex.Message });
+    }
+}
+
+[HttpGet]
+public JsonResult ObtenerProductoPorID(int id)
+{
+    try
+    {
+        var producto = _context.Productos.FirstOrDefault(p => p.ProductoID == id && !p.Eliminado);
+
+        if (producto == null)
+        {
+            return Json(new { success = false, message = "Producto no encontrado" });
+        }
+
+        return Json(new
+        {
+            success = true,
+            precio = producto.PrecioVenta,
+            descripcionProducto = producto.Descripcion,
+            stock = producto.Cantidad,
+            codigo = producto.Codigo
+        });
+    }
+    catch (Exception ex)
+    {
+        return Json(new { success = false, message = "Error al obtener detalle: " + ex.Message });
+    }
+}
 
     [HttpPost]
   public JsonResult GuardarVenta(DateTime? fecha_venta, decimal total, string usuarioID, Forma_pago Forma_pago)

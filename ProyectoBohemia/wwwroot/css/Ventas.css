@@ -1,3 +1,9 @@
+
+.Fondo_Venta {
+    background: linear-gradient(135deg, #c0c1d1, #f4f1f6);
+
+ }
+
 #tbody-Carga_Venta {
     display: block;
     max-height: 400px; /* Ajusta este valor según el tamaño que desees */
@@ -117,4 +123,38 @@ input, select {
     height: 10px;
     background-color: #198754; /* Mismo color del toast */
     clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+
+   
 }
+
+
+
+.posicion_boton_confirmar
+{
+   margin-top: -3.5em;
+}
+
+
+@media (max-width: 768px) {
+    .posicion_boton_confirmar {
+      
+        margin-top: 3em;
+    }
+    
+ 
+}
+
+
+@media (max-width: 768px) {
+    .ocultar-en-movil {
+      display: none !important;
+    }
+  }
+
+  .btn-hover-custom:hover {
+      background-color: #1e3a8a;
+      color: #fff;
+      border-color: #1e3a8a;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+  }

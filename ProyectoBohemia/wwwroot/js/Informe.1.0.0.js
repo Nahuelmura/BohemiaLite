@@ -35,7 +35,7 @@ function TraerDetalleVentas() {
                     <tr>
                     
                     
-                         <td class="Textobohemia" colspan="5" style="font-weight: bold; background-color: #f0f0f0;">
+                         <td class="Textobohemia" colspan="5" style="font-weight: bold; background-color:rgb(110, 110, 110);">
                             N° Venta: ${venta.ventaID} - Fecha de venta: ${venta.fecha_Ventas} -: ${venta.emailUsuario}  -: ${venta.forma_pagostring}  
                         </td>
                     </tr>`;

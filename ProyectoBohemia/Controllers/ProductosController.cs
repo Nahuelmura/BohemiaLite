@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ProyectoBohemia.Data;
 using ProyectoBohemia.Models;
 
@@ -21,6 +22,8 @@ public class ProductosController : Controller
     public IActionResult Index(string codigo)
     {
 
+
+ ViewData["TituloHeader"] = "PRODUCTOS";  //declararacion de titulo por pestaña
 
           // Crear una lista de SelectListItem que incluya el elemento adicional
         var selectListItems = new List<SelectListItem>
@@ -67,7 +70,7 @@ public class ProductosController : Controller
     }
 
 
-public JsonResult ListadoProducto(int productoID, string codigo)
+public JsonResult ListadoProducto(int productoID, string codigo,string observacion)
 {
     var productos = _context.Productos.AsQueryable();
 
@@ -82,6 +85,10 @@ public JsonResult ListadoProducto(int productoID, string codigo)
     }
 
 
+ if (!string.IsNullOrEmpty(observacion))
+{
+    productos = productos.Where(p => EF.Functions.Like(p.Observacion, observacion + "%"));
+} // de esta forma no rompe sqlite
 
     
     int totalProductosRegistrados = productos.Count();

@@ -25,7 +25,7 @@ public class HomeController : Controller
 [Authorize]
 
     public async Task<IActionResult> IndexAsync()
-    {
+    { ViewData["TituloHeader"] = "Bienvenido a Bohemia Vintage";  //declararacion de titulo por pestaña
         await InicializarPermisosUsuario();
         return View();
     }

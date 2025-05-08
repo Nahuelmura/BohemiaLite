@@ -1,4 +1,8 @@
-<h1 class="Textobohemia"  style="text-align: center;">Informe </h1>
+<body class="Fondo_informe">
+  
+
+
+@* <h1 class="Textobohemia"  style="text-align: center;">Informe </h1> *@
 <h6  class="Textobohemia"  style="text-align: center;">En esta sección se mostrarán las ventas realizadas por el usuario logueado.</h6>
 <div id="resumenVentas" style="display: none; font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #007bff;">
 </div>
@@ -45,7 +49,7 @@ Filtra las ventas por Fecha Desde y Fecha Hasta, y obtendrás el total de las ve
 
 
 <div style="max-height: 400px; overflow-y: auto;">
-  <table class="table table-hover table-fixed" style="table-layout: fixed; width: 100%;">
+  <table class="table table-hover table-dark table-fixed" style="table-layout: fixed; width: 100%;">
     <thead class="Textobohemia" style="position: sticky; top: 0; background-color: white; z-index: 1;">
       <tr>
         <th style="width: 10%;">Código</th>
@@ -62,7 +66,11 @@ Filtra las ventas por Fecha Desde y Fecha Hasta, y obtendrás el total de las ve
     </tbody>
   </table>
 </div>
+
+  </body>
 <script>
+
+
   // alerta verde. tostol 
 document.addEventListener("DOMContentLoaded", function () {
     var delayModal = 2000;
